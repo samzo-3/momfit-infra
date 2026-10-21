@@ -5,3 +5,4 @@ resources:
   - ./momfit-sync.yaml
   - ./image-repositories.yaml
   - ./image-policies.yaml
+  - ./image-automation.yaml

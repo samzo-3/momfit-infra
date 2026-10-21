@@ -3,6 +3,8 @@ kind: ImagePolicy
 metadata:
   name: momfit-frontend
   namespace: flux-system
+  labels:
+    momfit.io/component: frontend
 spec:
   imageRepositoryRef:
     name: momfit-frontend

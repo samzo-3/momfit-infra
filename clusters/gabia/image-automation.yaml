@@ -1,0 +1,34 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: momfit-frontend
+  namespace: flux-system
+spec:
+  interval: 5m
+  suspend: true
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  policySelector:
+    matchLabels:
+      momfit.io/component: frontend
+
+  git:
+    checkout:
+      ref:
+        branch: main
+
+    commit:
+      author:
+        name: fluxcdbot
+        email: fluxcdbot@users.noreply.github.com
+      messageTemplate: "chore: update MomFit frontend image"
+
+    push:
+      branch: main
+
+  update:
+    path: ./apps/momfit
+    strategy: Setters
