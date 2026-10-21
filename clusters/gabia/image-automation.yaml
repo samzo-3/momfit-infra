@@ -12,8 +12,12 @@ spec:
     name: flux-system
 
   policySelector:
-    matchLabels:
-      momfit.io/component: frontend
+  matchExpressions:
+    - key: momfit.io/component
+      operator: In
+      values:
+        - frontend
+        - backend
 
   git:
     checkout:
