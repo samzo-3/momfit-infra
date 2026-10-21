@@ -1,6 +1,6 @@
 # MomFit Infrastructure
 
-MomFit(CareFit AI) 프로젝트의 **K3s 배포 설정과 Flux CD GitOps 구성**을 관리하는 저장소입니다.
+MomFit 프로젝트의 **K3s 배포 설정과 Flux CD GitOps 구성**을 관리하는 저장소입니다.
 
 - 서비스: https://team3.bssbu.co.kr
 - Frontend: https://github.com/samzo-3/momfit-frontend
