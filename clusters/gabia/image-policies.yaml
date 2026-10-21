@@ -14,3 +14,20 @@ spec:
   policy:
     numerical:
       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: momfit-backend
+  namespace: flux-system
+  labels:
+    momfit.io/component: backend
+spec:
+  imageRepositoryRef:
+    name: momfit-backend
+  filterTags:
+    pattern: '^develop-(?P<num>[0-9]+)$'
+    extract: '$num'
+  policy:
+    numerical:
+      order: asc
