@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: momfit-frontend
+  namespace: flux-system
+spec:
+  image: ghcr.io/samzo-3/momfit-frontend
+  interval: 5m
+  secretRef:
+    name: flux-ghcr-auth
