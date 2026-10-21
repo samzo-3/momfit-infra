@@ -1,0 +1,14 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: momfit-frontend
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: momfit-frontend
+  filterTags:
+    pattern: '^develop-(?P<num>[0-9]+)$'
+    extract: '$num'
+  policy:
+    numerical:
+      order: asc

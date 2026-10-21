@@ -4,3 +4,4 @@ resources:
   - ./flux-system
   - ./momfit-sync.yaml
   - ./image-repositories.yaml
+  - ./image-policies.yaml
