@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: momfit-chatbot
+  namespace: team
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: momfit-chatbot
+  template:
+    metadata:
+      labels:
+        app: momfit-chatbot
+    spec:
+      imagePullSecrets:
+        - name: ghcr-auth
+      containers:
+        - name: chatbot
+          image: ghcr.io/samzo-3/momfit-chatbot:develop-1
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: momfit-chatbot-env
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10

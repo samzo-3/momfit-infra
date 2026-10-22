@@ -5,3 +5,6 @@ kind: Kustomization
 resources:
   - frontend-deployment.yaml
   - backend-deployment.yaml
+  - qdrant.yaml
+  - chatbot-deployment.yaml
+  - chatbot-service.yaml

@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: momfit-qdrant-data
+  namespace: team
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: momfit-qdrant
+  namespace: team
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: momfit-qdrant
+  template:
+    metadata:
+      labels:
+        app: momfit-qdrant
+    spec:
+      containers:
+        - name: qdrant
+          image: qdrant/qdrant:v1.16.3
+          ports:
+            - containerPort: 6333
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          volumeMounts:
+            - name: qdrant-storage
+              mountPath: /qdrant/storage
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 6333
+            initialDelaySeconds: 10
+            periodSeconds: 10
+      volumes:
+        - name: qdrant-storage
+          persistentVolumeClaim:
+            claimName: momfit-qdrant-data
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: momfit-qdrant
+  namespace: team
+spec:
+  type: ClusterIP
+  selector:
+    app: momfit-qdrant
+  ports:
+    - name: http
+      port: 6333
+      targetPort: 6333
