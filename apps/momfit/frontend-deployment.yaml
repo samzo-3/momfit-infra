@@ -21,7 +21,7 @@ spec:
         app: momfit-frontend
     spec:
       containers:
-      - image: ghcr.io/samzo-3/momfit-frontend:develop-13 # {"$imagepolicy": "flux-system:momfit-frontend"}
+      - image: ghcr.io/samzo-3/momfit-frontend:develop-15 # {"$imagepolicy": "flux-system:momfit-frontend"}
         imagePullPolicy: Always
         name: frontend
         ports:
