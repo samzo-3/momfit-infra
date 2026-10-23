@@ -13,16 +13,23 @@ spec:
       labels:
         app: momfit-chatbot
     spec:
+      # Chatbot을 t3-w1에 고정
+      nodeSelector:
+        kubernetes.io/hostname: t3-w1
+
       imagePullSecrets:
         - name: ghcr-auth
+
       containers:
         - name: chatbot
           image: ghcr.io/samzo-3/momfit-chatbot:develop-1
           ports:
             - containerPort: 8100
+
           envFrom:
             - secretRef:
                 name: momfit-chatbot-env
+
           resources:
             requests:
               cpu: 100m
@@ -30,6 +37,7 @@ spec:
             limits:
               cpu: "1"
               memory: 1Gi
+
           readinessProbe:
             tcpSocket:
               port: 8100
