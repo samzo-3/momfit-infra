@@ -29,7 +29,7 @@ spec:
         envFrom:
         - secretRef:
             name: momfit-backend-env
-        image: ghcr.io/samzo-3/momfit-backend:develop-17 # {"$imagepolicy": "flux-system:momfit-backend"}
+        image: ghcr.io/samzo-3/momfit-backend:develop-18 # {"$imagepolicy": "flux-system:momfit-backend"}
         imagePullPolicy: Always
         name: backend
         ports:
