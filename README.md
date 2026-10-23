@@ -6,6 +6,7 @@ MomFit 프로젝트의 **K3s 배포 설정과 Flux CD GitOps 구성**을 관리�
 - Frontend: https://github.com/samzo-3/momfit-frontend
 - Backend: https://github.com/samzo-3/momfit-backend
 - Infrastructure: https://github.com/samzo-3/momfit-infra
+- chatbot: https://github.com/samzo-3/momfit-chatbot
 
 ## 1. 인프라 구조
 
